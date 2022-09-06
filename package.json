@@ -1,0 +1,20 @@
+{
+    "name": "cloud-yatt",
+    "homepage": "https://github.com/thesourorange/cloud-yatt",
+    "description": "",
+    "main": "",
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "font-awesome": "^4.7.0",
+        "jszip": "^3.5.0",
+        "file-saver": "^2.0.2"
+
+    }
+}

@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:nightly-py3
+FROM tensorflow/tensorflow
 
 RUN apt-get update --fix-missing
 RUN apt-get install -y nodejs npm
@@ -17,11 +17,7 @@ COPY . /app
 RUN pip install --upgrade pip
 RUN pip install --trusted-host pypi.python.org -r docker-requirements.txt
 
-RUN npm install -g bower
-
-RUN echo '{ "allow_root": true }' > /root/.bowerrc
-
-RUN  bower install
+RUN npm install 
 
 # Make port 80 available to the world outside this container
 EXPOSE 8080

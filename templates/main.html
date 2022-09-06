@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="icon" type="text/css" href="{{ url_for('static', filename='favicon.ico') }}"  />
 
-        <link rel="stylesheet" href="{{ bower_url_for(component='font-awesome', filename='css/font-awesome.css') }}"/>
-       
-        <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='tab.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="text/css" href="{{ url_for('static', filename='favicon.ico') }}" />
 
-        <script type="text/javascript" src="{{ bower_url_for(component='file-saver', filename='dist/FileSaver.min.js') }}"></script>            
-        <script type="text/javascript" src="{{ bower_url_for(component='jszip', filename='dist/jszip.min.js') }}"></script>            
-    </head>
+    <link rel="stylesheet" href="{{ npm_url_for(component='font-awesome', filename='css/font-awesome.css') }}" />
 
-    <body id="body" onload="__init()" style="overflow:hidden;">
-        <div id="blocker" style="display:none" class="modal-blocker"></div>
-        <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='tab.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+    <script type="text/javascript" src="{{ npm_url_for(component='file-saver', filename='dist/FileSaver.min.js') }}"></script>
+    <script type="text/javascript" src="{{ npm_url_for(component='jszip', filename='dist/jszip.min.js') }}"></script>
+</head>
+
+<body id="body" onload="__init()" style="overflow:hidden;">
+    <div id="blocker" style="display:none" class="modal-blocker"></div>
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <symbol id="shape_rectangle">
                     <title>Rectangular region shape</title>
@@ -46,362 +47,352 @@
                 </symbol>
             </defs>
         </svg>
-    
-        <div class="top_panel" id="ui_top_panel" style="-webkit-app-region: drag;">
-            <!-- Navigation menu -->
-            <div class="title">
-                <label>YATT</label>
-            </div>
-            <div class="navbar">
-                <ul style="margin-left:20px;">
-                    <li class="dropdown">
-                        <a title="Cloud" class="drop_menu_item">Cloud
-                            <div class="fa fa-caret-down fa-1x">
-                            </div>
-                        </a>
-                        <div class="dropdown-content">
-                            <a onclick="load_from_cloud()" title="Load archive from cloud">Load from Cloud</a>
-                            <a onclick="save_to_cloud()" title="Save archive to cloud">Save to Cloud</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a title="Archive" class="drop_menu_item">Archive
-                            <div class="fa fa-caret-down fa-1x">
-                            </div>
-                        </a>
-                        <div class="dropdown-content">
-                            <a onclick="load_archive()" title="Load archive from local disk">Load from Archive</a>
-                            <a onclick="save_archive()" title="Save to archive">Save to Archive</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a title="Image" class="drop_menu_item">Images
-                            <div class="fa fa-caret-down fa-1x">
-                            </div>
-                        </a>
-                        <div class="dropdown-content">
-                            <a onclick="sel_local_images()" title="Load (or add) a set of images from local disk">Load or
-                                Add Images</a>
-                            <a onclick="toggle_img_fn_list_visibility()" title="Browse currently loaded images">List
-                                    Images</a>
-                            <a onclick="clear_local_images()" title="Clear Images">Clear
-                                        Images</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a title="Assist" class="drop_menu_item">Assist
-                            <div class="fa fa-caret-down fa-1x">
-                            </div>
-                        </a>
-                        <div class="dropdown-content" id="model-list">
-                            <a onclick="load_model()" title="Load a model">
-                                Load a Model</a>
-                        </div>
-                    </li>
 
-                    <li class="dropdown">
-                        <a title="View" class="drop_menu_item">View
+    <div class="top_panel" id="ui_top_panel" style="-webkit-app-region: drag;">
+        <!-- Navigation menu -->
+        <div class="title">
+            <label>YATT</label>
+        </div>
+        <div class="navbar">
+            <ul style="margin-left:20px;">
+                <li class="dropdown">
+                    <a title="Cloud" class="drop_menu_item">Cloud
                             <div class="fa fa-caret-down fa-1x">
                             </div>
                         </a>
-                        <div class="dropdown-content">
-                            <a onclick="toggle_leftsidebar()" title="Show/hide left sidebar">Show/hide left sidebar</a>
-                            <a onclick="toggle_rightsidebar()" title="Show/hide right sidebar">Show/hide right sidebar</a>
-                            <a onclick="toggle_region_boundary_visibility()" title="Show or hide region boundaries">Show/hide region boundaries</a>
-                            <a onclick="toggle_region_id_visibility()" title="Show or hide region labels">Show/hide region
+                    <div class="dropdown-content">
+                        <a onclick="load_from_cloud()" title="Load archive from cloud">Load from Cloud</a>
+                        <a onclick="save_to_cloud()" title="Save archive to cloud">Save to Cloud</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a title="Archive" class="drop_menu_item">Archive
+                            <div class="fa fa-caret-down fa-1x">
+                            </div>
+                        </a>
+                    <div class="dropdown-content">
+                        <a onclick="load_archive()" title="Load archive from local disk">Load from Archive</a>
+                        <a onclick="save_archive()" title="Save to archive">Save to Archive</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a title="Image" class="drop_menu_item">Images
+                            <div class="fa fa-caret-down fa-1x">
+                            </div>
+                        </a>
+                    <div class="dropdown-content">
+                        <a onclick="sel_local_images()" title="Load (or add) a set of images from local disk">Load or
+                                Add Images</a>
+                        <a onclick="toggle_img_fn_list_visibility()" title="Browse currently loaded images">List
+                                    Images</a>
+                        <a onclick="clear_local_images()" title="Clear Images">Clear
+                                        Images</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a title="Assist" class="drop_menu_item">Assist
+                            <div class="fa fa-caret-down fa-1x">
+                            </div>
+                        </a>
+                    <div class="dropdown-content" id="model-list">
+                        <a onclick="load_model()" title="Load a model">
+                                Load a Model</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a title="View" class="drop_menu_item">View
+                            <div class="fa fa-caret-down fa-1x">
+                            </div>
+                        </a>
+                    <div class="dropdown-content">
+                        <a onclick="toggle_leftsidebar()" title="Show/hide left sidebar">Show/hide left sidebar</a>
+                        <a onclick="toggle_rightsidebar()" title="Show/hide right sidebar">Show/hide right sidebar</a>
+                        <a onclick="toggle_region_boundary_visibility()" title="Show or hide region boundaries">Show/hide region boundaries</a>
+                        <a onclick="toggle_region_id_visibility()" title="Show or hide region labels">Show/hide region
                                 labels</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a onclick="show_about_panel()" title="Help">Help
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a onclick="show_about_panel()" title="Help">Help
                             <div class="fa fa-caret-down fa-1x">
                             </div>
                         </a>
-                        <div class="dropdown-content">
-                            <a onclick="show_getting_started_panel()" title="Getting started with Bounding Box Editor (YATT)">Getting Started</a>
-                            <a onclick="show_license_panel()" title="YATT License">License</a>
-                            <a onclick="show_about_panel()" title="About Bounding Box Editor)">About</a>
-                        </div>
-                    </li>
-                </ul>
-    
-            </div>
-            <!-- end of #navbar -->
-    
-            <!-- Shortcut toolbar -->
-            <div class="toolbar">
+                    <div class="dropdown-content">
+                        <a onclick="show_getting_started_panel()" title="Getting started with Bounding Box Editor (YATT)">Getting Started</a>
+                        <a onclick="show_license_panel()" title="YATT License">License</a>
+                        <a onclick="show_about_panel()" title="About Bounding Box Editor)">About</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <!-- end of #navbar -->
+
+        <!-- Shortcut toolbar -->
+        <div class="toolbar">
+            <ul>
+                <li id="toolbar_prev_img" style="margin-left: 1em; -webkit-app-region: no-drag;" onclick="move_to_prev_image()" title="Previous Image">
+                    <div class="fa fa-arrow-left fa-1x">
+                    </div>
+                </li>
+                <li id="toolbar_next_img" style="-webkit-app-region: no-drag;" onclick="move_to_next_image()" title="Next Image">
+                    <div class="fa fa-arrow-right fa-1x">
+                    </div>
+                </li>
+                <li id="toolbar_list_img" style="-webkit-app-region: no-drag;" onclick="toggle_img_fn_list_visibility()" title="List Images">
+                    <div class="fa fa-list-ul fa-1x">
+                    </div>
+                </li>
+
+                <li id="toolbar_zoom_out" style="margin-left: 2em; -webkit-app-region: no-drag;" onclick="zoom_out()" title="Zoom Out">
+                    <div class="fa fa-search-minus fa-1x">
+                    </div>
+                </li>
+                <li id="toolbar_zoom_in" style="-webkit-app-region: no-drag;" onclick="zoom_in()" title="Zoom In">
+                    <div class="fa fa-search-plus fa-1x">
+                    </div>
+                </li>
+                <li id="toolbar_zoom_reset" style="-webkit-app-region: no-drag;" onclick="reset_zoom_level()" title="Zoom Reset">
+                    <div class="fa fa-arrows-alt fa-1x">
+                    </div>
+                </li>
+
+                <li id="toolbar_copy_region" style="margin-left: 2em; -webkit-app-region: no-drag;" onclick="copy_sel_regions()" title="Copy Region">
+                    <div class="fa fa-files-o fa-1x bottom-icon">
+                    </div>
+                </li>
+                <li id="toolbar_paste_region" style="-webkit-app-region: no-drag;" onclick="paste_sel_regions()" title="Paste Region">
+                    <div class="fa fa-clipboard fa-1x bottom-icon">
+                    </div>
+                </li>
+                <li id="toolbar_sel_all_region" style="-webkit-app-region: no-drag;" onclick="sel_all_regions()" title="Select All Regions">
+                    <div class="fa fa-hand-o-up fa-1x bottom-icon">
+                    </div>
+                </li>
+                <li id="toolbar_del_region" style="-webkit-app-region: no-drag;" onclick="del_sel_regions()" title="Delete Region">
+                    <div class="fa fa-eraser fa-1x bottom-icon">
+                    </div>
+                </li>
+            </ul>
+            <!-- endof #toolbar -->
+            <div style="position: absolute; top:0px; right:-40px; font-size:24px; width:60px;">
                 <ul>
-                    <li id="toolbar_prev_img" style="margin-left: 1em; -webkit-app-region: no-drag;" onclick="move_to_prev_image()" title="Previous Image">
-                        <div class="fa fa-arrow-left fa-1x">
-                        </div>
-                    </li>
-                    <li id="toolbar_next_img" style="-webkit-app-region: no-drag;" onclick="move_to_next_image()" title="Next Image">
-                        <div class="fa fa-arrow-right fa-1x">
-                        </div>
-                    </li>
-                    <li id="toolbar_list_img" style="-webkit-app-region: no-drag;" onclick="toggle_img_fn_list_visibility()" title="List Images">
-                        <div class="fa fa-list-ul fa-1x">
-                        </div>
-                    </li>
-    
-                    <li id="toolbar_zoom_out" style="margin-left: 2em; -webkit-app-region: no-drag;" onclick="zoom_out()" title="Zoom Out">
-                        <div class="fa fa-search-minus fa-1x">
-                        </div>
-                    </li>
-                    <li id="toolbar_zoom_in" style="-webkit-app-region: no-drag;" onclick="zoom_in()" title="Zoom In">
-                        <div class="fa fa-search-plus fa-1x">
-                        </div>
-                    </li>
-                    <li id="toolbar_zoom_reset" style="-webkit-app-region: no-drag;" onclick="reset_zoom_level()" title="Zoom Reset">
-                        <div class="fa fa-arrows-alt fa-1x">
-                        </div>
-                    </li>
-    
-                    <li id="toolbar_copy_region" style="margin-left: 2em; -webkit-app-region: no-drag;" onclick="copy_sel_regions()" title="Copy Region">
-                        <div class="fa fa-files-o fa-1x bottom-icon">
-                        </div>
-                    </li>
-                    <li id="toolbar_paste_region" style="-webkit-app-region: no-drag;" onclick="paste_sel_regions()" title="Paste Region">
-                        <div class="fa fa-clipboard fa-1x bottom-icon">
-                        </div>
-                    </li>
-                    <li id="toolbar_sel_all_region" style="-webkit-app-region: no-drag;" onclick="sel_all_regions()" title="Select All Regions">
-                        <div class="fa fa-hand-o-up fa-1x bottom-icon">
-                        </div>
-                    </li>
-                    <li id="toolbar_del_region" style="-webkit-app-region: no-drag;" onclick="del_sel_regions()" title="Delete Region">
-                        <div class="fa fa-eraser fa-1x bottom-icon">
+                    <li id="toolbarhelp" style="-webkit-app-region: no-drag;" onclick="show_about_panel()" title="Show About Panel">
+                        <div class="fa fa-question-circle fa-1x top-icon">
                         </div>
                     </li>
                 </ul>
-                <!-- endof #toolbar -->    
-                <div style="position: absolute; top:0px; right:-40px; font-size:24px; width:60px;">
-                    <ul>
-                        <li id="toolbarhelp" style="-webkit-app-region: no-drag;" onclick="show_about_panel()" title="Show About Panel">
-                            <div class="fa fa-question-circle fa-1x top-icon">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-    
-         </div>
-        <!-- endof #top_panel -->
-    
-        <!-- Middle Panel contains a left-sidebar and image display areas -->
-        <div id="leftsidebar_collapse_panel">
-            <div onclick="toggle_leftsidebar()" id="leftsidebar_collapse_button" title="Show/hide left toolbar">
-                <div class="collapse_button fa fa-angle-double-left fa-1x bottom-icon"></div>
             </div>
         </div>
-    
-        <div class="middle_panel">
-            <div id="leftsidebar">
-                <button class="leftsidebar_accordion active">Region Shapes</button>
-                <div class="leftsidebar_accordion_panel show" id="region_shape_selection_panel">
-                    <ul class="region_shape" style="margin-left:4px;">
-                        <li id="region_shape_rect"
-                            style="margin-right:2px; margin-top:5px; border: solid 1px rgba(0,0,0, 0.1);" class="selected"
-                            onclick="select_region_shape('rect')" title="Rectangle">
-                            <svg style="margin-top:5px; margin-left:4px;" height="36" viewbox="0 0 32 32">
+
+    </div>
+    <!-- endof #top_panel -->
+
+    <!-- Middle Panel contains a left-sidebar and image display areas -->
+    <div id="leftsidebar_collapse_panel">
+        <div onclick="toggle_leftsidebar()" id="leftsidebar_collapse_button" title="Show/hide left toolbar">
+            <div class="collapse_button fa fa-angle-double-left fa-1x bottom-icon"></div>
+        </div>
+    </div>
+
+    <div class="middle_panel">
+        <div id="leftsidebar">
+            <button class="leftsidebar_accordion active">Region Shapes</button>
+            <div class="leftsidebar_accordion_panel show" id="region_shape_selection_panel">
+                <ul class="region_shape" style="margin-left:4px;">
+                    <li id="region_shape_rect" style="margin-right:2px; margin-top:5px; border: solid 1px rgba(0,0,0, 0.1);" class="selected" onclick="select_region_shape('rect')" title="Rectangle">
+                        <svg style="margin-top:5px; margin-left:4px;" height="36" viewbox="0 0 32 32">
                                 <use xlink:href="#shape_rectangle"></use>
                             </svg></li>
-                        <li id="region_shape_circle"
-                            style="margin-right:2px; margin-top:5px;  border: solid 1px rgba(0,0,0, 0.1);"
-                            onclick="select_region_shape('circle')" title="Circle">
-                            <svg style="margin-top:5px; margin-left:4px;" height="36" viewbox="0 0 32 32">
+                    <li id="region_shape_circle" style="margin-right:2px; margin-top:5px;  border: solid 1px rgba(0,0,0, 0.1);" onclick="select_region_shape('circle')" title="Circle">
+                        <svg style="margin-top:5px; margin-left:4px;" height="36" viewbox="0 0 32 32">
                                 <use xlink:href="#shape_circle"></use>
                             </svg>
-                        </li>
-                        <li id="region_shape_ellipse"
-                            style="margin-right:2px; margin-top:5px; border: solid 1px rgba(0,0,0, 0.1);"
-                            onclick="select_region_shape('ellipse')" title="Ellipse">
-                            <svg style="margin-top:5px; margin-left:3px;" height="36" viewbox="0 0 32 32">
+                    </li>
+                    <li id="region_shape_ellipse" style="margin-right:2px; margin-top:5px; border: solid 1px rgba(0,0,0, 0.1);" onclick="select_region_shape('ellipse')" title="Ellipse">
+                        <svg style="margin-top:5px; margin-left:3px;" height="36" viewbox="0 0 32 32">
                                 <use xlink:href="#shape_ellipse"></use>
                             </svg>
-                        </li>
-                        <li id="region_shape_polygon"
-                            style="margin-right:2px; margin-top:5px; border: solid 1px rgba(0,0,0, 0.1);"
-                            onclick="select_region_shape('polygon')" title="Polygon">
-                            <svg style="margin-top:5px; margin-left:3px;" height="36" viewbox="0 0 32 32">
+                    </li>
+                    <li id="region_shape_polygon" style="margin-right:2px; margin-top:5px; border: solid 1px rgba(0,0,0, 0.1);" onclick="select_region_shape('polygon')" title="Polygon">
+                        <svg style="margin-top:5px; margin-left:3px;" height="36" viewbox="0 0 32 32">
                                 <use xlink:href="#shape_polygon"></use>
                             </svg>
-                        </li>
-                        <li id="region_shape_point" 
-                            style="margin-right:2px; margin-top:5px; border: solid 1px rgba(0,0,0, 0.1);"
-                            onclick="select_region_shape('point')" title="Point">
-                            <svg style="margin-top:5px; margin-left:3px;" height="36" viewbox="0 0 32 32">
+                    </li>
+                    <li id="region_shape_point" style="margin-right:2px; margin-top:5px; border: solid 1px rgba(0,0,0, 0.1);" onclick="select_region_shape('point')" title="Point">
+                        <svg style="margin-top:5px; margin-left:3px;" height="36" viewbox="0 0 32 32">
                                 <use xlink:href="#shape_point"></use>
                             </svg>
-                        </li>
-                    </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="leftsidebar_accordion active" id="loaded_img_panel_title">Loaded Images</button>
+            <div class="leftsidebar_accordion_panel show" id="img_fn_list_panel">
+                <div>
+                    <input type="text" placeholder="Filter using regular expression" onfocus="img_fn_list_onfocus()" onblur="img_fn_list_onblur()" oninput="img_fn_list_onregex()" id="img_fn_list_regex">
                 </div>
-    
-                <button class="leftsidebar_accordion active" id="loaded_img_panel_title">Loaded Images</button>
-                <div class="leftsidebar_accordion_panel show" id="img_fn_list_panel">
-                    <div>
-                        <input type="text" placeholder="Filter using regular expression" onfocus="img_fn_list_onfocus()" onblur="img_fn_list_onblur()" oninput="img_fn_list_onregex()" id="img_fn_list_regex">
-                    </div>
-                    <div id="img_fn_list"></div>
+                <div id="img_fn_list"></div>
+            </div>
+
+            <button class="leftsidebar_accordion">Keyboard Shortcuts</button>
+            <div class="leftsidebar_accordion_panel" id="keyboard_shortcuts_panel">
+                <table style="padding: 2em 0em;">
+                    <tr>
+                        <td style="width: 6em;">n/p&nbsp(<i class="fa fa-arrow-left fa-1x"></i>/<i class="fa fa-arrow-right fa-1x"></i>)</td>
+                        <td>Next/Previous image</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-search-plus fa-1x"></i>/<i class="fa fa-search-minus fa-1x"></i>/<i class="fa fa-arrows-alt fa-1x"></i></td>
+                        <td>Zoom in/out/reset</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl</kbd> + c</td>
+                        <td>Copy sel. regions</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl</kbd> + v</td>
+                        <td>Paste sel. regions</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl</kbd> + a</td>
+                        <td>Select all regions</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Del</kbd>/<kbd>Bksp</kbd>
+                        </td>
+                        <td>Delete image region</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Esc</kbd>
+                            <td>Cancel operation</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl</kbd> + s</td>
+                        <td>Download annotations</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Spacebar</kbd>
+                            <td>Toggle image list</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <!-- end of leftsidebar -->
+    </div>
+
+    <!-- Main display area: contains image canvas, ... -->
+    <div id="display_area">
+        <div id="canvas_panel" style="position:absolute; top:35px; bottom:29px; left:295px; right:250px; border:1px solid rgb(0,0,0); overflow:scroll;">
+            <canvas id="image_canvas"></canvas>
+            <canvas id="region_canvas" tabindex="1"></canvas>
+        </div>
+    </div>
+    <!-- Middle Panel contains a left-sidebar and image display areas -->
+    <div id="rightsidebar_collapse_panel">
+        <div onclick="toggle_rightsidebar()" id="rightsidebar_collapse_button" title="Show/hide right toolbar">
+            <div class="collapse_button fa fa-angle-double-right fa-1x bottom-icon"></div>
+        </div>
+    </div>
+
+    <div id="rightsidebar_panel" style="position:absolute; top:35px; bottom:29px; right:20px; width:225px; border:1px solid rgb(0,0,0); overflow:auto;">
+        <div id="region_content_panel">
+            <table id="region_attributes_table">
+            </table>
+        </div>
+    </div>
+
+    <!-- to show status messages -->
+    <div id="message_panel"></div>
+
+    <div id='waitDialog' class='modal' style="display:none;">
+        <div style="position:fixed; text-align: center; top:54%; left:48%; margin-left:0px; margin-top:-100px;">
+            <div class='loader'></div>
+        </div>
+        <div id='waitMessage' style="position:absolute; top:55%; color:rgba(0,0,0, 1.0); text-align: center; width:100%; z-index:100;"></div>
+    </div>
+
+    <div class="model" id="cloud-connect" style="display:none">
+        <div style="position:absolute; padding:120px; top:0px; bottom:0px; left:0px; right:0px;">
+            <div class="modal-content" style="margin-top:40px; width:540px;">
+                <div class="modal-header" style="background-color:black">
+                    <span class="close" id="close" onclick="close_cloud_connection_panel()">&times;</span>
+                    <h2 id="dialog_title">Connect to Cloud</h2>
                 </div>
-    
-                <button class="leftsidebar_accordion">Keyboard Shortcuts</button>
-                <div class="leftsidebar_accordion_panel" id="keyboard_shortcuts_panel">
-                    <table style="padding: 2em 0em;">
+                <div class="modal-body" id="text" style="background: rgba(0,0,0,0.0.5); height:150px;">
+                    <table style="font-size: small; padding:8px;">
                         <tr>
-                            <td style="width: 6em;">n/p&nbsp(<i class="fa fa-arrow-left fa-1x"></i>/<i class="fa fa-arrow-right fa-1x"></i>)</td>
-                            <td>Next/Previous image</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-search-plus fa-1x"></i>/<i class="fa fa-search-minus fa-1x"></i>/<i class="fa fa-arrows-alt fa-1x"></i></td>
-                            <td>Zoom in/out/reset</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Ctrl</kbd> + c</td>
-                            <td>Copy sel. regions</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Ctrl</kbd> + v</td>
-                            <td>Paste sel. regions</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Ctrl</kbd> + a</td>
-                            <td>Select all regions</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Del</kbd>/<kbd>Bksp</kbd>
+                            <td style="font-weight: bold">
+                                Token
                             </td>
-                            <td>Delete image region</td>
                         </tr>
                         <tr>
-                            <td><kbd>Esc</kbd>
-                                <td>Cancel operation</td>
+                            <td>
+                                <input type="text" id="cloud-token" name="token" style="font-size: small; width:480px; height:18px;"></input>
+                            </td>
                         </tr>
                         <tr>
-                            <td><kbd>Ctrl</kbd> + s</td>
-                            <td>Download annotations</td>
+                            <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td><kbd>Spacebar</kbd>
-                                <td>Toggle image list</td>
+                            <td style="font-weight: bold">
+                                Container
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="cloud-container" name="container" style="font-size: small; width:480px; height:18px;"></input>
+                            </td>
                         </tr>
                     </table>
                 </div>
-    
-            </div>
-            <!-- end of leftsidebar -->
-        </div>
-    
-        <!-- Main display area: contains image canvas, ... -->
-        <div id="display_area">
-            <div id="canvas_panel" style="position:absolute; top:35px; bottom:29px; left:295px; right:250px; border:1px solid rgb(0,0,0); overflow:scroll;">
-                <canvas id="image_canvas"></canvas>
-                <canvas id="region_canvas" tabindex="1"></canvas>
-            </div>
-        </div>
-        <!-- Middle Panel contains a left-sidebar and image display areas -->
-        <div id="rightsidebar_collapse_panel">
-            <div onclick="toggle_rightsidebar()" id="rightsidebar_collapse_button" title="Show/hide right toolbar">
-                <div class="collapse_button fa fa-angle-double-right fa-1x bottom-icon"></div>
-            </div>
-        </div>
-    
-        <div id="rightsidebar_panel" style="position:absolute; top:35px; bottom:29px; right:20px; width:225px; border:1px solid rgb(0,0,0); overflow:auto;">
-            <div id="region_content_panel">
-                <table id="region_attributes_table">
-                </table>
-            </div>
-        </div>
-    
-        <!-- to show status messages -->
-        <div id="message_panel"></div>
-    
-        <div id='waitDialog' class='modal' style="display:none;">
-            <div style="position:fixed; text-align: center; top:54%; left:48%; margin-left:0px; margin-top:-100px;">
-                <div class='loader'></div>
-            </div>
-            <div id='waitMessage' style="position:absolute; top:55%; color:rgba(0,0,0, 1.0); text-align: center; width:100%; z-index:100;"></div>
-        </div>
-        
-        <div class="model" id="cloud-connect" style="display:none">
-            <div style="position:absolute; padding:120px; top:0px; bottom:0px; left:0px; right:0px;">
-                <div class="modal-content" style="margin-top:40px; width:540px;">
-                    <div class="modal-header" style="background-color:black">
-                        <span class="close" id="close" onclick="close_cloud_connection_panel()">&times;</span>
-                        <h2 id="dialog_title">Connect to Cloud</h2>
-                    </div>
-                    <div class="modal-body" id="text" style="background: rgba(0,0,0,0.0.5); height:150px;">
-                        <table style="font-size: small; padding:8px;">
-                            <tr>
-                                <td style="font-weight: bold">
-                                    Token
-                                </td>
-                            </tr>
-                            <tr>    
-                                <td>
-                                    <input type="text" id="cloud-token" name="token" style="font-size: small; width:480px; height:18px;"></input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: bold">
-                                    Container
-                                </td>
-                            </tr>
-                            <tr>    
-                                <td>
-                                    <input type="text" id="cloud-container" name="container" style="font-size: small; width:480px; height:18px;"></input>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="padding-left:20px; margin-top:20px; background-color: white">
-                        <button class="modal-btn" id="ok_cloud_connect_button" onclick="connect_to_cloud()">OK</button>
-                        <button class="modal-cancel-btn" id="cancel_cloud_connect_button"  onclick="close_cloud_connection_panel()">Cancel</button>
-                    </div>
+                <div style="padding-left:20px; margin-top:20px; background-color: white">
+                    <button class="modal-btn" id="ok_cloud_connect_button" onclick="connect_to_cloud()">OK</button>
+                    <button class="modal-cancel-btn" id="cancel_cloud_connect_button" onclick="close_cloud_connection_panel()">Cancel</button>
                 </div>
+            </div>
 
-            </div>    
         </div>
-        <div class="model" id="dialog" style="display:none">
-            <div style="position:absolute; padding:120px; top:0px; bottom:0px; left:0px; right:0px;">
-                <div class="modal-content" style="margin-top:40px; width:540px;">
-                    <div class="modal-header" style="background-color:black">
-                        <span class="close" id="close" onclick="close_model_panel()">&times;</span>
-                        <h2 id="dialog_title">Getting Started</h2>
-                    </div>
-                    <div class="modal-body" id="text" style="background: rgba(0,0,0,0.0.5); height:400px;">
-                        <div id="getting_started_panel" class="modal-scroll-panel" style="position:absolute; top:50px; bottom:36px; left:0px; right:0px; overflow:auto; display:none;">
-                            <ol style="font-size:12px;">
-                                <li>Click [Archive <i class="fa fa-chevron-right fa-1x" style="font-size:10px;"></i> Load or Save an Archive] in the top menu bar to load a set of archive that you wish to load or save.</li>
-                                <li>Click [Images <i class="fa fa-chevron-right fa-1x" style="font-size:10px;"></i> Load or Add Images] in the top menu bar to load a set of images that you wish to annotate.</li>
-                                <li>Press n (or p) to navigate through the loaded images. You can also use the <i class="fa fa-arrow-left fa-1x"></i>/<i class="fa fa-arrow-right fa-1x"></i> icons in the top panel toolbar for navigation.</li>
-                                <li>Click <b>Region Attributes</b> in the left panel to reveal a panel in the bottom. Click
-                                    <b>[Add New]</b> to add a new attribute. For example:
-                                    <pre>
+    </div>
+    <div class="model" id="dialog" style="display:none">
+        <div style="position:absolute; padding:120px; top:0px; bottom:0px; left:0px; right:0px;">
+            <div class="modal-content" style="margin-top:40px; width:540px;">
+                <div class="modal-header" style="background-color:black">
+                    <span class="close" id="close" onclick="close_model_panel()">&times;</span>
+                    <h2 id="dialog_title">Getting Started</h2>
+                </div>
+                <div class="modal-body" id="text" style="background: rgba(0,0,0,0.0.5); height:400px;">
+                    <div id="getting_started_panel" class="modal-scroll-panel" style="position:absolute; top:50px; bottom:36px; left:0px; right:0px; overflow:auto; display:none;">
+                        <ol style="font-size:12px;">
+                            <li>Click [Archive <i class="fa fa-chevron-right fa-1x" style="font-size:10px;"></i> Load or Save an Archive] in the top menu bar to load a set of archive that you wish to load or save.</li>
+                            <li>Click [Images <i class="fa fa-chevron-right fa-1x" style="font-size:10px;"></i> Load or Add Images] in the top menu bar to load a set of images that you wish to annotate.</li>
+                            <li>Press n (or p) to navigate through the loaded images. You can also use the <i class="fa fa-arrow-left fa-1x"></i>/<i class="fa fa-arrow-right fa-1x"></i> icons in the top panel toolbar for navigation.</li>
+                            <li>Click <b>Region Attributes</b> in the left panel to reveal a panel in the bottom. Click
+                                <b>[Add New]</b> to add a new attribute. For example:
+                                <pre>
                             object_name
                             object_color
                         </pre> You can add more region attributes according to you needs.
-                                    <li>In the <b>Region Shape</b> section in the left panel, click the rectangular shape</li>
-                                    <li>On the image area, keep pressing the right click button as you drag the mouse cursor. This will draw a rectangular region on the image.</li>
-                                    <li>This newly created region is automatically selected. Now you can enter the attribute value for this region in the bottom panel. For example:
-                                        <pre>
+                                <li>In the <b>Region Shape</b> section in the left panel, click the rectangular shape</li>
+                                <li>On the image area, keep pressing the right click button as you drag the mouse cursor. This will draw a rectangular region on the image.</li>
+                                <li>This newly created region is automatically selected. Now you can enter the attribute value for this region in the bottom panel. For example:
+                                    <pre>
                             object_name = dog
                             object_color = white
                         </pre> You can annotate multiple regions in this image or other images and assign a value to each pre-defined attribute.</li>
-                                    <li>To download the annotated region data, click
-                                        <b>[Annotation <i class="fa fa-chevron-right fa-1x" style="font-size:10px;"></i> Save as CSV]</b> in the top menu bar. This will download a text file containing region shape and attribute data.
-                                    </li>
-                                    <li>Next time, you can start from the point your left by first loading the images and then importing the CSV file (downloaded in step 7) by clicking <b>[Annotation 
+                                <li>To download the annotated region data, click
+                                    <b>[Annotation <i class="fa fa-chevron-right fa-1x" style="font-size:10px;"></i> Save as CSV]</b> in the top menu bar. This will download a text file containing region shape and attribute data.
+                                </li>
+                                <li>Next time, you can start from the point your left by first loading the images and then importing the CSV file (downloaded in step 7) by clicking <b>[Annotation 
                                          <i class="fa fa-chevron-right fa-1x" style="font-size:10px;"></i> 
                                          Import]</b>.
-                                    </li>
-                            </ol>
-                        </div>
-                        <div id="license_panel" class="modal-scroll-panel" style="position:absolute; top:50px; bottom:36px; left:5px; right:5px; overflow:auto; display:none;">
-                            <pre>
+                                </li>
+                        </ol>
+                    </div>
+                    <div id="license_panel" class="modal-scroll-panel" style="position:absolute; top:50px; bottom:36px; left:5px; right:5px; overflow:auto; display:none;">
+                        <pre>
         Copyright (c) 2016-2018, Neil Brittliff - University of Camberra.
         All rights reserved.
     
@@ -425,44 +416,44 @@
         ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
         POSSIBILITY OF SUCH DAMAGE.
                     </pre>
-                        </div>
-    
-                        <div id="about_panel" class="modal-scroll-panel" style="position:absolute; top:50px; bottom:36px; left:5px; right:5px; overflow:auto; display:none;">
-                            <p style="font-size: 2em;">Yet Another Tagging Tool - YATT</p>
-                            <p style="font-size: 0.8em;">version <a href="https://gitlab.com/vgg/via/blob/via-1.x.y/CHANGELOG">1.0.6</a></p>
-                            <p style="font-size:12px;">
-                                <b>Y</b>et <b>A</b>nother<b>T</b>agging<b>T</b>ool (YATT) is an open source developed at the University of Canberra (based on the open source application developed by the Visual Geomerty Group at the University of Oxford).
-                                With this standalone application, you can define regions in an image and create a textual description of those regions. Such image regions and descriptions are useful for supervised training of learning algorithms.
-                            </p>
-                            <p style="font-size:12px;">Copyright &copy; 2016-2020,
-                                <a href="mailto:Neil.Brittliff@outlook.com">Neil Brittliff</a>&nbsp;University of Canberra</p>
-                        </div>
-    
-                        <div id="action_panel" class="modal-scroll-panel" style="position:absolute; top:50px; bottom:36px; left:0px; right:0px; overflow:auto; display:none;">
-                        </div>
-    
                     </div>
-                    <div style="padding-left:20px; margin-top:20px; background-color: white">
-                        <button class="modal-btn" id="ok_button">OK</button>
-                        <button class="modal-btn" id="cancel_button">Cancel</button>
+
+                    <div id="about_panel" class="modal-scroll-panel" style="position:absolute; top:50px; bottom:36px; left:5px; right:5px; overflow:auto; display:none;">
+                        <p style="font-size: 2em;">Yet Another Tagging Tool - YATT</p>
+                        <p style="font-size: 0.8em;">version <a href="https://gitlab.com/vgg/via/blob/via-1.x.y/CHANGELOG">1.0.6</a></p>
+                        <p style="font-size:12px;">
+                            <b>Y</b>et <b>A</b>nother<b>T</b>agging<b>T</b>ool (YATT) is an open source developed at the University of Canberra (based on the open source application developed by the Visual Geomerty Group at the University of Oxford).
+                            With this standalone application, you can define regions in an image and create a textual description of those regions. Such image regions and descriptions are useful for supervised training of learning algorithms.
+                        </p>
+                        <p style="font-size:12px;">Copyright &copy; 2016-2020,
+                            <a href="mailto:Neil.Brittliff@outlook.com">Neil Brittliff</a>&nbsp;University of Canberra</p>
                     </div>
+
+                    <div id="action_panel" class="modal-scroll-panel" style="position:absolute; top:50px; bottom:36px; left:0px; right:0px; overflow:auto; display:none;">
+                    </div>
+
+                </div>
+                <div style="padding-left:20px; margin-top:20px; background-color: white">
+                    <button class="modal-btn" id="ok_button">OK</button>
+                    <button class="modal-btn" id="cancel_button">Cancel</button>
                 </div>
             </div>
+        </div>
 
-            <script type="text/javascript" src="{{ url_for('static', filename='metrics.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='cloud.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='model.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='archive.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='storage.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='metadata.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='region.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='geometry.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='composer.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='painter.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='canvas.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='decorator.js') }}"></script>    
-            <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>    
-    
-    </body>
+        <script type="text/javascript" src="{{ url_for('static', filename='metrics.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='cloud.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='model.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='archive.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='storage.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='metadata.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='region.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='geometry.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='composer.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='painter.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='canvas.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='decorator.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+
+</body>
 
 </html>

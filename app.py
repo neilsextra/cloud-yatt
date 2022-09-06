@@ -1,5 +1,7 @@
 from flask import Flask, Blueprint, render_template, request, send_file, Response
-from flask_bower import Bower
+
+from flask_npm import Npm
+
 import io
 from os import environ
 import datetime
@@ -25,7 +27,7 @@ views = Blueprint('views', __name__, template_folder='templates')
 
 app = Flask(__name__)
 
-Bower(app)
+Npm(app)
 
 app.register_blueprint(views)
 
